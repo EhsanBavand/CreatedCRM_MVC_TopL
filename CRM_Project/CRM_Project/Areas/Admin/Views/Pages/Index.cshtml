@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DataSource.Page>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageGroup.GroupTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Visit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowInSlider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="/PageImages/@item.ImageName" class="thumbnail" style="max-width:120px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageGroup.GroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInSlider)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tags)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+
+                <a href="@Url.Action("Edit" , new { id = item.PageID})" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <a href="@Url.Action("Details" , new { id = item.PageID})" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </a>              
+                <a href="@Url.Action("Delete" , new { id = item.PageID})" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
